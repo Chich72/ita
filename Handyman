@@ -1,0 +1,49 @@
+# Step A: Define your characters and give them text colors
+define mc = Character("[player_name]", color="#3399ff")
+define e = Character("Elena", color="#ff66cc")
+
+# Step B: The game starts here
+label start:
+
+    # Prompt the player to type their own name
+    $ player_name = renpy.input("What is your name?", default="Alex")
+    $ player_name = player_name.strip()
+
+    if player_name == "":
+        $ player_name = "Alex"
+
+    "The door to the studio clicks open, and you step inside."
+
+    mc "Hello? Is anyone here?"
+
+    "A tall woman turns around from a desk, smiling warmly."
+
+    e "Ah, you must be [player_name]. I've been waiting for you."
+
+    # Step C: Create a choice menu for the player
+    menu:
+        "Greet her politely.":
+            jump polite_path
+
+        "Flirt with her immediately.":
+            jump flirt_path
+
+# Step D: Branching paths based on choices
+label polite_path:
+    mc "Nice to meet you, Elena. Let's get straight to work."
+    e "I appreciate your professionalism. Let's begin."
+    "Elena sits down and opens her laptop, ready to show you the files."
+    jump game_over
+
+label flirt_path:
+    mc "I knew you'd be beautiful, Elena, but pictures didn't do you justice."
+    "Elena blushes slightly, her eyes locking onto yours."
+    e "Oh? Aren't you a bold one? I think we are going to get along just fine..."
+    "She steps slightly closer, the tension in the room rising instantly."
+    jump game_over
+
+# Step E: End the prototype loop
+label game_over:
+    "End of the quick prototype demo. Thanks for playing!"
+    return
+Use code with caution.
